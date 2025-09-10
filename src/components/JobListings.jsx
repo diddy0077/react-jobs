@@ -16,7 +16,7 @@ useEffect(() => {
     .then((data) => {
       console.log(data);
       setTimeout(() => {
-      setJobs(data);
+      setJobs(data.jobs);
       setLoading(false)
       }, 1000)
     })

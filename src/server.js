@@ -1,7 +1,13 @@
-{
-  "jobs": [
-    {
-      "id": "1",
+import { createServer, Model } from "miragejs";
+
+createServer({
+  models: {
+    jobs: Model,
+  },
+
+  seeds(server) {
+    server.create("job", {
+     "id": "1",
       "title": "Senior React Developer",
       "type": "Full-Time",
       "description": "We are seeking a talented Front-End Developer to join our team in Boston, MA. The ideal candidate will have strong skills in HTML, CSS, and JavaScript, with experience working with modern JavaScript frameworks such as React or Angular.",
@@ -13,13 +19,12 @@
         "contactEmail": "contact@teksolutions.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "2",
+    });
+    server.create("job", {
       "title": "Front-End Engineer (React & Redux)",
       "type": "Full-Time",
-      "location": "Miami, FL",
       "description": "Join our team as a Front-End Developer in sunny Miami, FL. We are looking for a motivated individual with a passion for crafting beautiful and responsive web applications. Experience with UI/UX design principles and a strong attention to detail are highly desirable.",
+      "location": "Miami, FL",
       "salary": "$70K - $80K",
       "company": {
         "name": "Veneer Solutions",
@@ -27,8 +32,8 @@
         "contactEmail": "contact@loremipsum.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
+    });
+    server.create("job", {
       "title": "React.js Dev",
       "type": "Full-Time",
       "description": "Are you passionate about front-end development? Join our team in vibrant Brooklyn, NY, and work on exciting projects that make a difference. We offer competitive compensation and a collaborative work environment where your ideas are valued.",
@@ -39,10 +44,9 @@
         "description": "Dolor Cloud is a leading technology company specializing in digital solutions for businesses of all sizes. With a focus on innovation and customer satisfaction, we are committed to delivering cutting-edge products and services.",
         "contactEmail": "contact@dolorsitamet.com",
         "contactPhone": "555-555-5555"
-      },
-      "id": "3"
-    },
-    {
+      }
+    });
+    server.create("job", {
       "id": "4",
       "title": "React Front-End Developer",
       "type": "Part-Time",
@@ -55,8 +59,8 @@
         "contactEmail": "contact@adipisicingelit.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
+    });
+    server.create("job", {
       "id": "5",
       "title": "Full Stack React Developer",
       "type": "Full-Time",
@@ -69,9 +73,9 @@
         "contactEmail": "contact@consecteturadipisicing.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "6",
+    });
+    server.create("job", {
+       "id": "6",
       "title": "React Native Developer",
       "type": "Full-Time",
       "description": "Join our team as a Front-End Developer in beautiful Portland, OR. We are looking for a skilled and enthusiastic individual to help us create innovative web solutions. Competitive salary and great benefits package available.",
@@ -83,6 +87,42 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
-    }
-  ]
-}
+    });
+  },
+
+ routes() {
+  this.namespace = "api";
+
+  // GET all jobs
+  this.get("/jobs", (schema) => {
+    return schema.jobs.all();
+  });
+
+  // GET single job
+  this.get("/jobs/:id", (schema, request) => {
+    const id = request.params.id;
+    return schema.jobs.find(id);
+  });
+
+  // POST new job
+  this.post("/jobs", (schema, request) => {
+    let attrs = JSON.parse(request.requestBody);
+    return schema.jobs.create(attrs);
+  });
+
+  // PUT update job
+  this.put("/jobs/:id", (schema, request) => {
+    let id = request.params.id;
+    let attrs = JSON.parse(request.requestBody);
+
+    return schema.jobs.find(id).update(attrs);
+  });
+
+  // DELETE job (optional but common)
+  this.delete("/jobs/:id", (schema, request) => {
+    let id = request.params.id;
+    return schema.jobs.find(id).destroy();
+  });
+},
+
+});

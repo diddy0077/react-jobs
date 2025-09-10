@@ -26,15 +26,15 @@ useEffect(() => {
   fetch(`/api/jobs/${id}`)
     .then(res => res.json())
     .then(data => {
-      setTitle(data.title);
-      setType(data.type);
-      setLocation(data.location);
-      setDescription(data.description);
-      setSalary(data.salary);
-      setCompanyName(data.company.name);
-      setCompanyDescription(data.company.description);
-      setContactEmail(data.company.contactEmail);
-      setContactPhone(data.company.contactPhone);
+      setTitle(data.jobs.title);
+      setType(data.jobs.type);
+      setLocation(data.jobs.location);
+      setDescription(data.jobs.description);
+      setSalary(data.jobs.salary);
+      setCompanyName(data.jobs.company.name);
+      setCompanyDescription(data.jobs.company.description);
+      setContactEmail(data.jobs.company.contactEmail);
+      setContactPhone(data.jobs.company.contactPhone);
       setTimeout(() => {
        setLoading(false); 
       },1000)  // ✅ done loading
