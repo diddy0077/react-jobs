@@ -53,103 +53,117 @@ useEffect(() => {
   }
 
   return (
-    <>
-      <Navbar/>
-      <section>
-        <div className='container m-auto py-6 px-6'>
-          <Link
-            to='/jobs'
-            className='text-indigo-500 hover:text-indigo-600 flex items-center'
-          >
-            <FaArrowLeft className='mr-2' /> Back to Job Listings
-          </Link>
-        </div>
-      </section>
+  <>
+  <Navbar />
+  <section>
+    <div className="container m-auto py-6 px-6 ">
+      <Link
+        to="/jobs"
+        className="text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 flex items-center transition duration-300"
+      >
+        <FaArrowLeft className="mr-2" /> Back to Job Listings
+      </Link>
+    </div>
+  </section>
 
-      {loading ? (<div className="col-span-full flex justify-center items-center py-20">
+  {loading ? (
+    <div className="col-span-full flex justify-center items-center py-20">
       <div className="w-15 h-15 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-    </div>) : (<section className='bg-indigo-50'>
-        <div className='container m-auto py-10 px-6'>
-          <div className='flex gap-7 flex-col md:flex-row'>
-            <main className='flex-1'>
-              <div className='bg-white p-6 rounded-lg shadow-md text-center md:text-left'>
-                <div className='text-gray-500 mb-4'>{job.type}</div>
-                <h1 className='text-3xl font-bold mb-4'>{job.title}</h1>
-                <div className='text-gray-500 mb-4 flex align-middle justify-center md:justify-start'>
-                  <FaMapMarker className='text-orange-700 mr-1' />
-                  <p className='text-orange-700'>{job.location}</p>
-                </div>
+    </div>
+  ) : (
+    <section className="bg-indigo-50 dark:bg-gray-900 transition duration-300 border-b dark:border-gray-700">
+      <div className="container m-auto py-10 px-6">
+        <div className="flex gap-7 flex-col md:flex-row">
+          <main className="flex-1">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center md:text-left transition duration-300">
+              <div className="text-gray-500 dark:text-gray-400 mb-4">{job.type}</div>
+              <h1 className="text-3xl font-bold mb-4 dark:text-white">{job.title}</h1>
+              <div className="text-gray-500 dark:text-gray-400 mb-4 flex align-middle justify-center md:justify-start">
+                <FaMapMarker className="text-orange-700 mr-1" />
+                <p className="text-orange-700">{job.location}</p>
               </div>
+            </div>
 
-              <div className='bg-white p-6 rounded-lg shadow-md mt-6'>
-                <h3 className='text-indigo-800 text-lg font-bold mb-6'>
-                  Job Description
-                </h3>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mt-6 transition duration-300">
+              <h3 className="text-indigo-800 dark:text-indigo-400 text-lg font-bold mb-6">
+                Job Description
+              </h3>
+              <p className="mb-4 dark:text-gray-300">{job.description}</p>
 
-                <p className='mb-4'>{job.description}</p>
+              <h3 className="text-indigo-800 dark:text-indigo-400 text-lg font-bold mb-2">
+                Salary
+              </h3>
+              <p className="mb-4 dark:text-gray-300">{job.salary} / Year</p>
+            </div>
+          </main>
 
-                <h3 className='text-indigo-800 text-lg font-bold mb-2'>
-                  Salary
-                </h3>
+          {/* Sidebar */}
+          <aside className="md:max-w-[350px]">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300">
+              <h3 className="text-xl font-bold mb-6 dark:text-white">Company Info</h3>
+              <h2 className="text-2xl dark:text-indigo-400">{job.company.name}</h2>
+              <p className="my-2 dark:text-gray-300">{job.company.description}</p>
+              <hr className="my-4 border-gray-300 dark:border-gray-700" />
 
-                <p className='mb-4'>{job.salary} / Year</p>
-              </div>
-            </main>
+              <h3 className="text-xl dark:text-white">Contact Email:</h3>
+              <p className="my-2 bg-indigo-100 dark:bg-gray-700 p-2 font-bold dark:text-gray-200">
+                {job.company.contactEmail}
+              </p>
 
-            {/* <!-- Sidebar --> */}
-            <aside className='md:max-w-[350px]'>
-              <div className='bg-white p-6 rounded-lg shadow-md'>
-                <h3 className='text-xl font-bold mb-6'>Company Info</h3>
+              <h3 className="text-xl dark:text-white">Contact Phone:</h3>
+              <p className="my-2 bg-indigo-100 dark:bg-gray-700 p-2 font-bold dark:text-gray-200">
+                {job.company.contactPhone}
+              </p>
+            </div>
 
-                <h2 className='text-2xl'>{job.company.name}</h2>
-
-                <p className='my-2'>{job.company.description}</p>
-
-                <hr className='my-4' />
-
-                <h3 className='text-xl'>Contact Email:</h3>
-
-                <p className='my-2 bg-indigo-100 p-2 font-bold'>
-                  {job.company.contactEmail}
-                </p>
-
-                <h3 className='text-xl'>Contact Phone:</h3>
-
-                <p className='my-2 bg-indigo-100 p-2 font-bold'>
-                  {' '}
-                  {job.company.contactPhone}
-                </p>
-              </div>
-
-              <div className='bg-white p-6 rounded-lg shadow-md mt-6'>
-                <h3 className='text-xl font-bold mb-6'>Manage Job</h3>
-                <Link to={`/edit-job/${job.id}`}
-                  className='bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
-                >
-                  Edit Job
-                </Link>
-                  <button
-                    onClick={() => setShowModal(true)}
-                  className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block cursor-pointer'
-                >
-                  Delete Job
-                </button>
-              </div>
-            </aside>
-          </div>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mt-6 transition duration-300">
+              <h3 className="text-xl font-bold mb-6 dark:text-white">Manage Job</h3>
+              <Link
+                to={`/edit-job/${job.id}`}
+                className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block transition duration-300"
+              >
+                Edit Job
+              </Link>
+              <button
+                onClick={() => setShowModal(true)}
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block cursor-pointer transition duration-300"
+              >
+                Delete Job
+              </button>
+            </div>
+          </aside>
         </div>
-      </section>)}
-      
-      {showModal && <div className='fixed inset-0 flex items-center justify-center h-screen bg-black/40 h-full w-full'>
-        <div className='bg-white shadow-md rounded-lg p-4 px-6'>
-          <p className='font-semibold text-lg'>Are you sure you want to delete this Listing?</p>
-          <div className='flex items-center justify-center gap-6 mt-2'>
-            <button onClick={() => setShowModal(false)} type='button' className='bg-red-500 p-1.5 shadow-md text-white px-3 rounded-full transition duration-300 active:scale-[0.95] cursor-pointer'>Cancel</button>
-            <button onClick={deleteJob} type='button' className='bg-indigo-500 p-1.5 shadow-md text-white px-3 rounded-full transition duration-300 active:scale-[0.95] cursor-pointer'>Confirm</button>
-          </div>
+      </div>
+    </section>
+  )}
+
+  {showModal && (
+    <div className="fixed inset-0 flex items-center justify-center h-screen bg-black/40">
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 px-6 transition duration-300">
+        <p className="font-semibold text-lg dark:text-white">
+          Are you sure you want to delete this Listing?
+        </p>
+        <div className="flex items-center justify-center gap-6 mt-2">
+          <button
+            onClick={() => setShowModal(false)}
+            type="button"
+            className="bg-red-500 p-1.5 shadow-md text-white px-3 rounded-full transition duration-300 active:scale-[0.95] cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={deleteJob}
+            type="button"
+            className="bg-indigo-500 p-1.5 shadow-md text-white px-3 rounded-full transition duration-300 active:scale-[0.95] cursor-pointer"
+          >
+            Confirm
+          </button>
         </div>
-      </div>}
-    </>
+      </div>
+    </div>
+  )}
+</>
+
   )
 }
 
