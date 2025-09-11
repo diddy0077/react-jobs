@@ -138,9 +138,9 @@ useEffect(() => {
   )}
 
   {showModal && (
-    <div className="fixed inset-0 flex items-center justify-center h-screen bg-black/40">
-      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 px-6 transition duration-300">
-        <p className="font-semibold text-lg dark:text-white">
+    <div className="fixed inset-0 flex items-center justify-center h-screen bg-black/40 ">
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 px-6 transition duration-300 mx-4">
+        <p className="font-semibold text-lg dark:text-white text-center">
           Are you sure you want to delete this Listing?
         </p>
         <div className="flex items-center justify-center gap-6 mt-2">
