@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { FaExclamationTriangle } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
 
 const NotFoundPage = () => {
   return (
-    <section className='text-center flex flex-col justify-center items-center h-96'>
+    <>
+      <Navbar />
+      <section className='text-center flex flex-col justify-center items-center h-96 dark:text-gray-200 dark:border-b dark:border-gray-700'>
       <FaExclamationTriangle className='text-yellow-400 text-6xl mb-4' />
       <h1 className='text-6xl font-bold mb-4'>404 Not Found</h1>
       <p className='text-xl mb-5'>This page does not exist</p>
@@ -14,6 +17,7 @@ const NotFoundPage = () => {
         Go Back
       </Link>
     </section>
+    </>
   );
 };
 export default NotFoundPage;

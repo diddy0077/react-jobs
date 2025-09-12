@@ -18,7 +18,7 @@ const HomeCard = () => {
       id: 2,
       title: "For Employers",
       desc: "List your job to find the perfect developer for the role",
-      link: "/add-jobs",
+      link: "add-job",
       button: "Add Job",
       cardClass:
         "bg-indigo-100 dark:bg-gray-900 transition-colors duration-500 ease-in-out",

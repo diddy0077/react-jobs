@@ -51,7 +51,7 @@ export default function SearchBar({
             rounded-lg shadow-sm
             placeholder:text-gray-400 dark:placeholder:text-gray-500
             focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500
-            transition-colors duration-300
+            transition-all duration-300
           "
         />
 
